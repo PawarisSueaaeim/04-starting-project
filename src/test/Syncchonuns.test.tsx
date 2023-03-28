@@ -3,6 +3,7 @@ import Demo1 from "../components/Demo1";
 import Demo2 from "../components/Demo2";
 import Demo3 from "../components/Demo3";
 import Demo4 from "../components/Demo4";
+import Demo5 from "../components/Demo5";
 
 test("render component Demo1", () => {
   render(<Demo1 />);
@@ -37,4 +38,18 @@ test("render component Demo4", () => {
   expect(ancestor).toContainElement(descendant);
   expect(descendant).not.toContainElement(ancestor);
   expect(ancestor).not.toContainElement(nonExistantElement);
+});
+
+test("render component Demo5", () => {
+  render(<Demo5 />);
+
+  const textInput = screen.getByTestId("input-text");
+  const numberInput = screen.getByTestId("input-number");
+  const emptyInput = screen.getByTestId("input-empty");
+  const selectInput = screen.getByTestId("select-number");
+
+  expect(textInput).toHaveValue("text");
+  expect(numberInput).toHaveValue(5);
+  expect(emptyInput).not.toHaveValue();
+  expect(selectInput).toHaveValue(["second", "third"]);
 });
