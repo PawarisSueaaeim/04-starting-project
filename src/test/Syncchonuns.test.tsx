@@ -4,6 +4,7 @@ import Demo2 from "../components/Demo2";
 import Demo3 from "../components/Demo3";
 import Demo4 from "../components/Demo4";
 import Demo5 from "../components/Demo5";
+import Demo6 from "../components/Demo6";
 
 test("render component Demo1", () => {
   render(<Demo1 />);
@@ -52,4 +53,14 @@ test("render component Demo5", () => {
   expect(numberInput).toHaveValue(5);
   expect(emptyInput).not.toHaveValue();
   expect(selectInput).toHaveValue(["second", "third"]);
+});
+
+test("render component Demo6", () => {
+  render(<Demo6 />);
+
+  const listElement = screen.getAllByTestId("li").length;
+ 
+  expect(listElement).toBe(2);
+  expect(screen.getByText(/pleum 20 male/i)).toBeInTheDocument();
+  expect(screen.getByText(/mauris 22 female/i)).toBeInTheDocument();
 });
